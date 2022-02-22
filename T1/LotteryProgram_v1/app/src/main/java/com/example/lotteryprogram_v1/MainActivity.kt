@@ -11,8 +11,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var textView: TextView = findViewById(R.id.textView);
-        var button: Button = findViewById(R.id.button);
+        val textView: TextView = findViewById(R.id.textView);
+        val button: Button = findViewById(R.id.button);
 
         val list = ArrayList<Int?>()
         for (i in 1..49) {

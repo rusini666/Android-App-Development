@@ -31,9 +31,9 @@ class MainActivity : AppCompatActivity() {
 
         btn.setOnClickListener {
             val value = userInput.text.toString()
-            for (i in 0..5) {
-                if(value != list[i].toString())
-                    lotteryNum.add(list[i])
+            for (i in list) {
+                if(value != i.toString())
+                    lotteryNum.add(i)
             }
 
             num1.text = lotteryNum[0].toString()

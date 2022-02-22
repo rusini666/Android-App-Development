@@ -12,14 +12,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var num1 = findViewById<TextView>(R.id.num1)
-        var num2 = findViewById<TextView>(R.id.num2)
-        var num3 = findViewById<TextView>(R.id.num3)
-        var num4 = findViewById<TextView>(R.id.num4)
-        var num5 = findViewById<TextView>(R.id.num5)
-        var num6 = findViewById<TextView>(R.id.num6)
-        var userInput = findViewById<EditText>(R.id.userInput)
-        var btn = findViewById<Button>(R.id.btn)
+        val num1 = findViewById<TextView>(R.id.num1)
+        val num2 = findViewById<TextView>(R.id.num2)
+        val num3 = findViewById<TextView>(R.id.num3)
+        val num4 = findViewById<TextView>(R.id.num4)
+        val num5 = findViewById<TextView>(R.id.num5)
+        val num6 = findViewById<TextView>(R.id.num6)
+        val userInput = findViewById<EditText>(R.id.userInput)
+        val btn = findViewById<Button>(R.id.btn)
         val btn1 = findViewById<Button>(R.id.btn1)
         val btn2 = findViewById<Button>(R.id.btn2)
         val btn3 = findViewById<Button>(R.id.btn3)
@@ -32,73 +32,89 @@ class MainActivity : AppCompatActivity() {
             list.add(i)
         }
         list.shuffle()
-        val lists: MutableList<Int> = ArrayList()
+        val lotteryNum: ArrayList<Int> = ArrayList()
+
+        val value = userInput.text.toString()
+        for (i in list) {
+            if (value != i.toString())
+                lotteryNum.add(i)
+        }
+
+        val currentLotteryNum: ArrayList<Int> = ArrayList()
 
         btn.setOnClickListener {
-            val value = userInput.text.toString()
+            for(i in 0..5)
+                currentLotteryNum.add(lotteryNum[i])
 
-            for (i in 0..5) {
-                if(value != list[i].toString())
-                    lists.add(list[i])
-            }
-
-            num1.text = lists[0].toString()
-            num2.text = lists[1].toString()
-            num3.text = lists[2].toString()
-            num4.text = lists[3].toString()
-            num5.text = lists[4].toString()
-            num6.text = lists[5].toString()
+            num1.text = currentLotteryNum[0].toString()
+            num2.text = currentLotteryNum[1].toString()
+            num3.text = currentLotteryNum[2].toString()
+            num4.text = currentLotteryNum[3].toString()
+            num5.text = currentLotteryNum[4].toString()
+            num6.text = currentLotteryNum[5].toString()
         }
 
         btn1.setOnClickListener {
             list.shuffle()
-            for (i in list){
-                if (num1.text != list[i].toString() )
-                    num1.text = list[i].toString()
+            for (i in list) {
+                if (i !in currentLotteryNum) {
+                    num1.text = i.toString()
+                    currentLotteryNum[0] = i
                     break
+                }
             }
         }
 
         btn2.setOnClickListener {
             list.shuffle()
-            for (i in list){
-                if (num2.text != list[i].toString() )
-                    num2.text = list[i].toString()
+            for (i in list) {
+                if (i !in currentLotteryNum) {
+                    num2.text = i.toString()
+                    currentLotteryNum[1] = i
                     break
+                }
             }
         }
 
         btn3.setOnClickListener {
             list.shuffle()
-            for (i in list){
-                if (num3.text != list[i].toString() )
-                    num3.text = list[i].toString()
+            for (i in list) {
+                if (i !in currentLotteryNum) {
+                    num3.text = i.toString()
+                    currentLotteryNum[2] = i
                     break
+                }
             }
         }
 
         btn4.setOnClickListener {
             list.shuffle()
-            for (i in list){
-                if (num4.text != list[i].toString() )
-                    num4.text = list[i].toString()
+            for (i in list) {
+                if (i !in currentLotteryNum) {
+                    num4.text = i.toString()
+                    currentLotteryNum[3] = i
                     break
+                }
             }
         }
         btn5.setOnClickListener {
             list.shuffle()
-            for (i in list){
-                if (num5.text != list[i].toString() )
-                    num5.text = list[i].toString()
+            for (i in list) {
+                if (i !in currentLotteryNum) {
+                    num5.text = i.toString()
+                    currentLotteryNum[4] = i
                     break
+                }
             }
         }
         btn6.setOnClickListener {
             list.shuffle()
-            for (i in list){
-                if (num6.text != list[i].toString() )
-                    num6.text = list[i].toString()
+            for (i in list) {
+                if (i !in currentLotteryNum) {
+                    num6.text = i.toString()
+                    currentLotteryNum[5] = i
                     break
+                }
             }
         }
     }
