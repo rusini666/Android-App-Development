@@ -12,14 +12,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var num1 = findViewById<TextView>(R.id.num1)
-        var num2 = findViewById<TextView>(R.id.num2)
-        var num3 = findViewById<TextView>(R.id.num3)
-        var num4 = findViewById<TextView>(R.id.num4)
-        var num5 = findViewById<TextView>(R.id.num5)
-        var num6 = findViewById<TextView>(R.id.num6)
-        var userInput = findViewById<EditText>(R.id.userInput)
-        var btn = findViewById<Button>(R.id.btn)
+        val num1 = findViewById<TextView>(R.id.num1)
+        val num2 = findViewById<TextView>(R.id.num2)
+        val num3 = findViewById<TextView>(R.id.num3)
+        val num4 = findViewById<TextView>(R.id.num4)
+        val num5 = findViewById<TextView>(R.id.num5)
+        val num6 = findViewById<TextView>(R.id.num6)
+        val userInput = findViewById<EditText>(R.id.userInput)
+        val btn = findViewById<Button>(R.id.btn)
 
         val list = ArrayList<Int?>()
         for (i in 1..49) {
