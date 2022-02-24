@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">LostDog_v1</string>
+    <string name="lost_dog_have_you_found_her">Lost Dog - Have you found her?</string>
+    <string name="contact_the_owner">Contact the Owner</string>
+</resources>

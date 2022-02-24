@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">DogBreeds</string>
+    <string name="result">result</string>
+    <string name="dog3">dog3</string>
+    <string name="dog_breed_tag">Dog Breed:</string>
+    <string name="next">Next</string>
+    <string name="dog_breed_value">TextView</string>
+    <string name="guess_dog_breed">Guess Dog Breed</string>
+    <string name="result_tag">Result:</string>
+    <string name="dog2">dog2</string>
+    <string name="dog1">dog1</string>
+    <string name="final_results_tag">Final Results</string>
+    <string name="correct_guesses_tag">Correct Guesses:</string>
+    <string name="correct_guesses">TextView</string>
+    <string name="wrong_guesses">TextView</string>
+    <string name="incorrect_guesses_tag">Incorrect Guesses:</string>
+</resources>
