@@ -13,11 +13,11 @@ class FinalResults : AppCompatActivity() {
         val finalCorrect = findViewById<TextView>(R.id.finalCorrect)
         val finalWrong = findViewById<TextView>(R.id.finalWrong)
 
-        var correct: String = intent.getStringExtra("correct").toString()
-        var wrong: String = intent.getStringExtra("wrong").toString()
+        val correctR = intent.getStringExtra("correct").toString()
+        val wrongR = intent.getStringExtra("wrong").toString()
 
-        finalCorrect.text = correct
-        finalWrong.text = wrong
+        finalCorrect.text = correctR
+        finalWrong.text = wrongR
 
     }
 }

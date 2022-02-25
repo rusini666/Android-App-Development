@@ -6,9 +6,13 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 
 
 class MainActivity : AppCompatActivity() {
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -21,10 +25,10 @@ class MainActivity : AppCompatActivity() {
         val result = findViewById<TextView>(R.id.result)
         val nextBtn = findViewById<Button>(R.id.nextBtn)
         val finishBtn = findViewById<Button>(R.id.finishBtn)
-        val correctScore = 0
-        val wrongScore = 0
+        var correctScore = 0
+        var wrongScore = 0
 
-        val images = arrayOf("papillon", "toy_terrier", "vizsla", "standard_poodle", "whippet")
+            val images = arrayOf("papillon", "toy_terrier", "vizsla", "standard_poodle", "whippet")
 
             images.shuffle()
             val img1 = images[0].plus("__$random")
@@ -61,33 +65,40 @@ class MainActivity : AppCompatActivity() {
             dog3.setImageResource(resource_id_3)
 
 
+
             dog1.setOnClickListener {
                 if (breed[0] != actualResult && result.text == "") {
                     result.text = "WRONG!"
-                    wrongScore + 1
+                    result.setTextColor(ContextCompat.getColor(this, R.color.red))
+                    wrongScore++
                 } else if (breed[0] == actualResult && result.text == "") {
                     result.text = "CORRECT!"
-                    correctScore + 1
+                    result.setTextColor(ContextCompat.getColor(this, R.color.green))
+                    correctScore++
                 }
             }
 
             dog2.setOnClickListener {
                 if (breed[1] != actualResult && result.text == "") {
                     result.text = "WRONG!"
-                    wrongScore + 1
+                    result.setTextColor(ContextCompat.getColor(this, R.color.red))
+                    wrongScore++
                 } else if (breed[1] == actualResult && result.text == "") {
                     result.text = "CORRECT!"
-                    correctScore + 1
+                    result.setTextColor(ContextCompat.getColor(this, R.color.green))
+                    correctScore++
                 }
             }
 
             dog3.setOnClickListener {
                 if (breed[2] != actualResult && result.text == "") {
                     result.text = "WRONG!"
-                    wrongScore + 1
+                    result.setTextColor(ContextCompat.getColor(this, R.color.red))
+                    wrongScore++
                 } else if (breed[2] == actualResult && result.text == "") {
                     result.text = "CORRECT!"
-                    correctScore + 1
+                    result.setTextColor(ContextCompat.getColor(this, R.color.green))
+                    correctScore++
                 }
             }
 
