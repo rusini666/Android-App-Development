@@ -1,10 +1,12 @@
 package com.example.memorygame
 
+import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.widget.Button
+import android.widget.TextView
 
 class FiveByFour : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,11 +34,17 @@ class FiveByFour : AppCompatActivity() {
         val b72 = findViewById<Button>(R.id.b72)
         val b73 = findViewById<Button>(R.id.b73)
 
+        val scoreDisplay5 = findViewById<TextView>(R.id.scoreDisplay5)
+
         val btn = arrayOf(b54,b55,b56,b57,b58,b59,b60,b61,b62,b63,b64,b65,b66,b67,b68,b69,
         b70,b71,b72,b73)
+        btn.shuffle()
+        val restart = Intent(this, MainActivity::class.java)
         val randomBtn = ArrayList<Button>()
         val randomNum = (4..6).random()
-        btn.shuffle()
+
+        var userClicks = 0
+        var tries = 0
 
         for(i in 1..randomNum)
             randomBtn.add(btn[i])
@@ -50,37 +58,46 @@ class FiveByFour : AppCompatActivity() {
             override fun onFinish() {
                 for (i in randomBtn)
                     i.setBackgroundColor(Color.parseColor("#6200EE"))
+                for (j in btn) {
+                    j.setOnClickListener {
+                        if(tries != randomNum){
+                            if (j in randomBtn) {
+                                userClicks++
+                                tries++
+
+                                object : CountDownTimer(2000, 50) {
+                                    override fun onTick(arg0: Long) {
+                                        j.setBackgroundColor(Color.GREEN)
+                                        val value = userClicks.toString()
+                                        scoreDisplay5.text = "$value / $randomNum"
+                                    }
+
+                                    override fun onFinish() {
+                                        j.setBackgroundColor(Color.parseColor("#6200EE"))
+                                    }
+                                }.start()
+                            } else {
+                                tries++
+                                object : CountDownTimer(2000, 50) {
+                                    override fun onTick(arg0: Long) {
+                                        j.setBackgroundColor(Color.RED)
+                                        j.text = "X"
+                                    }
+
+                                    override fun onFinish() {
+                                        j.setBackgroundColor(Color.parseColor("#6200EE"))
+                                        j.text = ""
+                                    }
+                                }.start()
+                            }
+                        }else{
+                            startActivity(restart)
+                        }
+                    }
+                }
             }
         }.start()
 
-        for (j in btn) {
-            j.setOnClickListener {
-                if (j in randomBtn) {
-                    object : CountDownTimer(2000, 50) {
-                        override fun onTick(arg0: Long) {
-                            j.setBackgroundColor(Color.GREEN)
-                        }
-
-                        override fun onFinish() {
-                            j.setBackgroundColor(Color.parseColor("#6200EE"))
-                        }
-                    }.start()
-
-                } else {
-                    object : CountDownTimer(2000, 50) {
-                        override fun onTick(arg0: Long) {
-                            j.setBackgroundColor(Color.RED)
-                            j.setText("X")
-                        }
-
-                        override fun onFinish() {
-                            j.setBackgroundColor(Color.parseColor("#6200EE"))
-                            j.setText("")
-                        }
-                    }.start()
-                }
-            }
-        }
 
     }
 }

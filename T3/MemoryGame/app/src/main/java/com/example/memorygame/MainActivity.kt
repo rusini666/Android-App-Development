@@ -9,8 +9,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        (1..6).random()
-        when(1){
+
+        when((1..6).random()){
             1 -> {
                 val i1 = Intent(this, ThreeByThree::class.java);
                 startActivity(i1);

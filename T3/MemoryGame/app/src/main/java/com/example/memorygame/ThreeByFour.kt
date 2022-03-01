@@ -1,10 +1,12 @@
 package com.example.memorygame
 
+import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.widget.Button
+import android.widget.TextView
 
 class ThreeByFour : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,10 +26,14 @@ class ThreeByFour : AppCompatActivity() {
         val b20 = findViewById<Button>(R.id.b20)
         val b21 = findViewById<Button>(R.id.b21)
 
+        val scoreDisplay2 = findViewById<TextView>(R.id.scoreDisplay2)
+        val restart = Intent(this, MainActivity::class.java)
         val btn = arrayOf(b10,b11,b12,b13,b14,b15,b16,b17,b18,b19,b20,b21)
         val randomBtn = ArrayList<Button>()
         val randomNum = (4..6).random()
         btn.shuffle()
+        var userClicks = 0
+        var tries = 0
 
         for(i in 1..randomNum)
             randomBtn.add(btn[i])
@@ -41,38 +47,49 @@ class ThreeByFour : AppCompatActivity() {
             override fun onFinish() {
                 for (i in randomBtn)
                     i.setBackgroundColor(Color.parseColor("#6200EE"))
+                for (j in btn) {
+                    j.setOnClickListener {
+                        if(tries != randomNum){
+                            if (j in randomBtn) {
+                                userClicks++
+                                tries++
+
+                                object : CountDownTimer(2000, 50) {
+                                    override fun onTick(arg0: Long) {
+                                        j.setBackgroundColor(Color.GREEN)
+                                        var value = userClicks.toString()
+                                        scoreDisplay2.text = "$value / $randomNum"
+                                    }
+
+                                    override fun onFinish() {
+                                        j.setBackgroundColor(Color.parseColor("#6200EE"))
+                                    }
+                                }.start()
+                            } else {
+                                tries++
+                                object : CountDownTimer(2000, 50) {
+                                    override fun onTick(arg0: Long) {
+                                        j.setBackgroundColor(Color.RED)
+                                        j.text = "X"
+                                    }
+
+                                    override fun onFinish() {
+                                        j.setBackgroundColor(Color.parseColor("#6200EE"))
+                                        j.text = ""
+                                    }
+                                }.start()
+                            }
+                        }else{
+
+                            startActivity(restart)
+                        }
+                    }
+                }
             }
         }.start()
 
 
-        for (j in btn) {
-            j.setOnClickListener {
-                if (j in randomBtn) {
-                    object : CountDownTimer(2000, 50) {
-                        override fun onTick(arg0: Long) {
-                            j.setBackgroundColor(Color.GREEN)
-                        }
 
-                        override fun onFinish() {
-                            j.setBackgroundColor(Color.parseColor("#6200EE"))
-                        }
-                    }.start()
-
-                } else {
-                    object : CountDownTimer(2000, 50) {
-                        override fun onTick(arg0: Long) {
-                            j.setBackgroundColor(Color.RED)
-                            j.setText("X")
-                        }
-
-                        override fun onFinish() {
-                            j.setBackgroundColor(Color.parseColor("#6200EE"))
-                            j.setText("")
-                        }
-                    }.start()
-                }
-            }
-        }
 
 
 

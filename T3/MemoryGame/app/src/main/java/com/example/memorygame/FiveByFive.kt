@@ -1,10 +1,12 @@
 package com.example.memorygame
 
+import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.widget.Button
+import android.widget.TextView
 
 class FiveByFive : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,12 +39,18 @@ class FiveByFive : AppCompatActivity() {
         val b97 = findViewById<Button>(R.id.b97)
         val b98 = findViewById<Button>(R.id.b98)
 
+        val scoreDisplay6 = findViewById<TextView>(R.id.scoreDisplay6)
+
         val btn = arrayOf(b74,b75,b76,b77,b78,b79,b80,b81,b82,b83,b84,b85,b86,b87,b88,b89,
             b90,b91,b92,b93,b94,b95,b96,b97,b98)
-        val randomBtn = ArrayList<Button>()
-        val randomNum = (4..6).random()
         btn.shuffle()
 
+        val randomBtn = ArrayList<Button>()
+        val randomNum = (4..6).random()
+
+        var userClicks = 0
+        var tries = 0
+        val restart = Intent(this, MainActivity::class.java)
         for(i in 1..randomNum)
             randomBtn.add(btn[i])
 
@@ -55,37 +63,44 @@ class FiveByFive : AppCompatActivity() {
             override fun onFinish() {
                 for (i in randomBtn)
                     i.setBackgroundColor(Color.parseColor("#6200EE"))
-            }
-        }.start()
+                for (j in btn) {
+                    j.setOnClickListener {
+                        if(tries != randomNum){
+                            if (j in randomBtn) {
+                                userClicks++
+                                tries++
 
-        for (j in btn) {
-            j.setOnClickListener {
-                if (j in randomBtn) {
-                    object : CountDownTimer(2000, 50) {
-                        override fun onTick(arg0: Long) {
-                            j.setBackgroundColor(Color.GREEN)
-                        }
+                                object : CountDownTimer(2000, 50) {
+                                    override fun onTick(arg0: Long) {
+                                        j.setBackgroundColor(Color.GREEN)
+                                        val value = userClicks.toString()
+                                        scoreDisplay6.text = "$value / $randomNum"
+                                    }
 
-                        override fun onFinish() {
-                            j.setBackgroundColor(Color.parseColor("#6200EE"))
-                        }
-                    }.start()
+                                    override fun onFinish() {
+                                        j.setBackgroundColor(Color.parseColor("#6200EE"))
+                                    }
+                                }.start()
+                            } else {
+                                tries++
+                                object : CountDownTimer(2000, 50) {
+                                    override fun onTick(arg0: Long) {
+                                        j.setBackgroundColor(Color.RED)
+                                        j.text = "X"
+                                    }
 
-                } else {
-                    object : CountDownTimer(2000, 50) {
-                        override fun onTick(arg0: Long) {
-                            j.setBackgroundColor(Color.RED)
-                            j.text = "X"
+                                    override fun onFinish() {
+                                        j.setBackgroundColor(Color.parseColor("#6200EE"))
+                                        j.text = ""
+                                    }
+                                }.start()
+                            }
+                        }else{
+                            startActivity(restart)
                         }
-
-                        override fun onFinish() {
-                            j.setBackgroundColor(Color.parseColor("#6200EE"))
-                            j.text = ""
-                        }
-                    }.start()
+                    }
                 }
             }
-        }
-
+        }.start()
     }
 }

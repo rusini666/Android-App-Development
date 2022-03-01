@@ -11,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity
 
 class ThreeByThree : AppCompatActivity() {
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_three_by_three)
@@ -27,7 +26,7 @@ class ThreeByThree : AppCompatActivity() {
         val b9 = findViewById<Button>(R.id.b9)
 
 
-        val scoreDisplay = findViewById<TextView>(R.id.scoreDisplay)
+        val scoreDisplay = findViewById<TextView>(R.id.scoreDisplay1)
 
         val btn = arrayOf(b1,b2,b3,b4,b5,b6,b7,b8,b9)
         btn.shuffle()
@@ -36,6 +35,9 @@ class ThreeByThree : AppCompatActivity() {
         val randomNum = (4..6).random()
         var userClicks = 0
         var tries = 0
+
+        val restart = Intent(this, MainActivity::class.java)
+
         for(i in 1..randomNum)
             randomBtn.add(btn[i])
 
@@ -48,49 +50,45 @@ class ThreeByThree : AppCompatActivity() {
             override fun onFinish() {
                 for (i in randomBtn)
                     i.setBackgroundColor(Color.parseColor("#6200EE"))
+                for (j in btn) {
+                    j.setOnClickListener {
+                        if(tries != randomNum){
+                            if (j in randomBtn) {
+                                userClicks++
+                                tries++
+
+                                object : CountDownTimer(2000, 50) {
+                                    override fun onTick(arg0: Long) {
+                                        j.setBackgroundColor(Color.GREEN)
+                                        val value = userClicks.toString()
+                                        scoreDisplay.text = "$value / $randomNum"
+                                    }
+
+                                    override fun onFinish() {
+                                        j.setBackgroundColor(Color.parseColor("#6200EE"))
+                                    }
+                                }.start()
+                            } else {
+                                tries++
+                                object : CountDownTimer(2000, 50) {
+                                    override fun onTick(arg0: Long) {
+                                        j.setBackgroundColor(Color.RED)
+                                        j.text = "X"
+                                    }
+
+                                    override fun onFinish() {
+                                        j.setBackgroundColor(Color.parseColor("#6200EE"))
+                                        j.text = ""
+                                    }
+                                }.start()
+                            }
+                        }else{
+                            startActivity(restart)
+                        }
+                    }
+                }
             }
         }.start()
-
-
-        for (j in btn) {
-            j.setOnClickListener {
-                if(tries != randomNum){
-                    if (j in randomBtn) {
-                        userClicks++
-                        tries++
-
-                        object : CountDownTimer(2000, 50) {
-                            override fun onTick(arg0: Long) {
-                                j.setBackgroundColor(Color.GREEN)
-                                var value = userClicks.toString()
-                                scoreDisplay.text = "$value / $randomNum"
-                            }
-
-                            override fun onFinish() {
-                                j.setBackgroundColor(Color.parseColor("#6200EE"))
-                            }
-                        }.start()
-                    } else {
-                        tries++
-                        object : CountDownTimer(2000, 50) {
-                            override fun onTick(arg0: Long) {
-                                j.setBackgroundColor(Color.RED)
-                                j.text = "X"
-                            }
-
-                            override fun onFinish() {
-                                j.setBackgroundColor(Color.parseColor("#6200EE"))
-                                j.text = ""
-                            }
-                        }.start()
-                    }
-                }else{
-                    val restart = Intent(this, MainActivity::class.java)
-                    startActivity(restart)
-                }
-
-            }
-        }
     }
 }
 

@@ -1,10 +1,12 @@
 package com.example.memorygame
 
+import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.widget.Button
+import android.widget.TextView
 
 class FourByFive : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,11 +34,15 @@ class FourByFive : AppCompatActivity() {
         val b52 = findViewById<Button>(R.id.b52)
         val b53 = findViewById<Button>(R.id.b53)
 
+        val scoreDisplay4 = findViewById<TextView>(R.id.scoreDisplay4)
+        val restart = Intent(this, MainActivity::class.java)
         val btn = arrayOf(b34,b35,b36,b37,b38,b39,b40,b41,b42,b43,b44,b45,b46,b47,b48,b49,
             b50,b51,b52,b53)
         val randomBtn = ArrayList<Button>()
         val randomNum = (4..6).random()
         btn.shuffle()
+        var userClicks = 0
+        var tries = 0
 
         for(i in 1..randomNum)
             randomBtn.add(btn[i])
@@ -50,8 +56,48 @@ class FourByFive : AppCompatActivity() {
             override fun onFinish() {
                 for (i in randomBtn)
                     i.setBackgroundColor(Color.parseColor("#6200EE"))
+                for (j in btn) {
+                    j.setOnClickListener {
+                        if(tries != randomNum){
+                            if (j in randomBtn) {
+                                userClicks++
+                                tries++
+
+                                object : CountDownTimer(2000, 50) {
+                                    override fun onTick(arg0: Long) {
+                                        j.setBackgroundColor(Color.GREEN)
+                                        val value = userClicks.toString()
+                                        scoreDisplay4.text = "$value / $randomNum"
+                                    }
+
+                                    override fun onFinish() {
+                                        j.setBackgroundColor(Color.parseColor("#6200EE"))
+                                    }
+                                }.start()
+                            } else {
+                                tries++
+                                object : CountDownTimer(2000, 50) {
+                                    override fun onTick(arg0: Long) {
+                                        j.setBackgroundColor(Color.RED)
+                                        j.text = "X"
+                                    }
+
+                                    override fun onFinish() {
+                                        j.setBackgroundColor(Color.parseColor("#6200EE"))
+                                        j.text = ""
+                                    }
+                                }.start()
+                            }
+                        }else{
+
+                            startActivity(restart)
+                        }
+                    }
+                }
             }
         }.start()
+
+
 
     }
 }
