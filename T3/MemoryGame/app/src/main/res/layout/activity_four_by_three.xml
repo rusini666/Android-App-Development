@@ -6,4 +6,87 @@
     android:layout_height="match_parent"
     tools:context=".FourByThree">
 
+    <androidx.gridlayout.widget.GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:columnCount="3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:rowCount="4">
+
+        <Button
+            android:id="@+id/b22"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            tools:ignore="SpeakableTextPresentCheck"/>
+
+        <Button
+            android:id="@+id/b23"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            tools:ignore="SpeakableTextPresentCheck"/>
+
+        <Button
+            android:id="@+id/b24"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck"/>
+
+        <Button
+            android:id="@+id/b25"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            tools:ignore="SpeakableTextPresentCheck"/>
+
+        <Button
+            android:id="@+id/b26"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            tools:ignore="SpeakableTextPresentCheck"/>
+
+        <Button
+            android:id="@+id/b27"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            tools:ignore="SpeakableTextPresentCheck"/>
+
+        <Button
+            android:id="@+id/b28"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <Button
+            android:id="@+id/b29"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            tools:ignore="SpeakableTextPresentCheck"/>
+
+        <Button
+            android:id="@+id/b30"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            tools:ignore="SpeakableTextPresentCheck"/>
+
+        <Button
+            android:id="@+id/b31"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            tools:ignore="SpeakableTextPresentCheck"/>
+
+        <Button
+            android:id="@+id/b32"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            tools:ignore="SpeakableTextPresentCheck"/>
+
+        <Button
+            android:id="@+id/b33"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            tools:ignore="SpeakableTextPresentCheck"/>
+
+    </androidx.gridlayout.widget.GridLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

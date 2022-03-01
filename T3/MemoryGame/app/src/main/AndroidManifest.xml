@@ -10,6 +10,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MemoryGame">
         <activity
+            android:name=".ThreeByThree"
+            android:exported="false" />
+        <activity
+            android:name=".FiveByFour"
+            android:exported="false" />
+        <activity
+            android:name=".FourByFive"
+            android:exported="false" />
+        <activity
+            android:name=".FiveByFive"
+            android:exported="false" />
+        <activity
+            android:name=".FourByThree"
+            android:exported="false" />
+        <activity
+            android:name=".ThreeByFour"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

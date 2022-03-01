@@ -4,6 +4,13 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/hp/AndroidStudioProjects/MemoryGame/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/hp/Documents/GitHub/Android-App-Development/T3/MemoryGame/app/src/main/res/layout/activity_five_by_five.xml" value="0.17391304347826086" />
+        <entry key="..\:/Users/hp/Documents/GitHub/Android-App-Development/T3/MemoryGame/app/src/main/res/layout/activity_five_by_four.xml" value="0.17391304347826086" />
+        <entry key="..\:/Users/hp/Documents/GitHub/Android-App-Development/T3/MemoryGame/app/src/main/res/layout/activity_four_by_five.xml" value="0.17391304347826086" />
+        <entry key="..\:/Users/hp/Documents/GitHub/Android-App-Development/T3/MemoryGame/app/src/main/res/layout/activity_four_by_three.xml" value="0.17391304347826086" />
+        <entry key="..\:/Users/hp/Documents/GitHub/Android-App-Development/T3/MemoryGame/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/hp/Documents/GitHub/Android-App-Development/T3/MemoryGame/app/src/main/res/layout/activity_three_by_four.xml" value="0.17391304347826086" />
+        <entry key="..\:/Users/hp/Documents/GitHub/Android-App-Development/T3/MemoryGame/app/src/main/res/layout/activity_three_by_three.xml" value="0.17391304347826086" />
       </map>
     </option>
   </component>
