@@ -10,6 +10,8 @@ import androidx.core.content.ContextCompat
 
 
 class MainActivity : AppCompatActivity() {
+    var correctScore = 0
+    var wrongScore = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -22,12 +24,12 @@ class MainActivity : AppCompatActivity() {
         val result = findViewById<TextView>(R.id.result)
         val nextBtn = findViewById<Button>(R.id.nextBtn)
         val finishBtn = findViewById<Button>(R.id.finishBtn)
-        var correctScore = 0
-        var wrongScore = 0
 
+
+        fun mainFunc(){
             val images = arrayOf("papillon", "toy_terrier", "vizsla", "standard_poodle", "whippet")
-
             images.shuffle()
+
             val img1 = images[0].plus("__$random")
             val img2 = images[1].plus("__$random")
             val img3 = images[2].plus("__$random")
@@ -60,8 +62,6 @@ class MainActivity : AppCompatActivity() {
             dog1.setImageResource(resource_id_1)
             dog2.setImageResource(resource_id_2)
             dog3.setImageResource(resource_id_3)
-
-
 
             dog1.setOnClickListener {
                 if (breed[0] != actualResult && result.text == "") {
@@ -98,43 +98,13 @@ class MainActivity : AppCompatActivity() {
                     correctScore++
                 }
             }
+        }
 
+        mainFunc()
 
         nextBtn.setOnClickListener{
-            images.shuffle()
-            val img1 = images[0].plus("__$random")
-            val img2 = images[1].plus("__$random")
-            val img3 = images[2].plus("__$random")
-
-            val breed = arrayOf(
-                img1.substringBefore("__"),
-                img2.substringBefore("__"),
-                img3.substringBefore("__")
-            )
-            val actualResult = breed[(0..2).random()]
-            breedName.text = actualResult
-
-
-            val resource_id_1 = resources.getIdentifier(
-                img1,
-                "drawable",
-                "com.example.dogbreeds"
-            )
-            val resource_id_2 = resources.getIdentifier(
-                img2,
-                "drawable",
-                "com.example.dogbreeds"
-            )
-            val resource_id_3 = resources.getIdentifier(
-                img3,
-                "drawable",
-                "com.example.dogbreeds"
-            )
-
-            dog1.setImageResource(resource_id_1)
-            dog2.setImageResource(resource_id_2)
-            dog3.setImageResource(resource_id_3)
             result.text=""
+            mainFunc()
         }
 
         finishBtn.setOnClickListener{
@@ -143,7 +113,6 @@ class MainActivity : AppCompatActivity() {
             finalResults.putExtra("wrong", wrongScore.toString())
             startActivity(finalResults)
         }
-
     }
 }
 

@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         val btn6 = findViewById<Button>(R.id.btn6)
 
         val list = ArrayList<Int>()
-        for (i in 1..48) {
+        for (i in 1..49) {
             list.add(i)
         }
         list.shuffle()

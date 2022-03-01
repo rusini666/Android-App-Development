@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="52dp"
-        android:text="Lottery Results"
+        android:text="@string/lottery_results"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="#000000"
@@ -26,7 +26,7 @@
         android:id="@+id/btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Generate"
+        android:text="@string/generate"
         app:layout_constraintBottom_toTopOf="@+id/lotteryTitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -117,7 +117,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="72dp"
         android:layout_marginTop="68dp"
-        android:text="Enter your number:"
+        android:text="@string/enter_your_number"
         android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -126,12 +126,17 @@
     <EditText
         android:id="@+id/userInput"
         android:layout_width="98dp"
-        android:layout_height="36dp"
+        android:layout_height="48dp"
         android:layout_marginTop="60dp"
+        android:hint="@string/enter_here"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        android:textColorHint="#757575"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.401"
         app:layout_constraintStart_toEndOf="@+id/textView"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <Button
         android:id="@+id/btn4"
@@ -139,7 +144,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
         android:layout_marginBottom="56dp"
-        android:text="BTN4"
+        android:text="@string/btn4"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -148,7 +153,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="56dp"
-        android:text="BTN5"
+        android:text="@string/btn5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btn6"
         app:layout_constraintHorizontal_bias="0.493"
@@ -160,7 +165,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
         android:layout_marginEnd="36dp"
-        android:text="BTN2"
+        android:text="@string/btn2"
         app:layout_constraintEnd_toStartOf="@+id/btn3"
         app:layout_constraintTop_toBottomOf="@+id/num5" />
 
@@ -169,7 +174,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="BTN1"
+        android:text="@string/btn1"
         app:layout_constraintEnd_toStartOf="@+id/btn2"
         app:layout_constraintHorizontal_bias="0.537"
         app:layout_constraintStart_toStartOf="parent"
@@ -181,7 +186,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="36dp"
         android:layout_marginBottom="56dp"
-        android:text="BTN6"
+        android:text="@string/btn6"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -191,7 +196,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
         android:layout_marginEnd="36dp"
-        android:text="BTN3"
+        android:text="@string/btn3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/num6" />
 

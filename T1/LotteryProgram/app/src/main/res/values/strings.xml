@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">LotteryProgram</string>
+    <string name="btn4">BTN4</string>
+    <string name="btn1">BTN1</string>
+    <string name="btn6">BTN6</string>
+    <string name="btn3">BTN3</string>
+    <string name="btn2">BTN2</string>
+    <string name="enter_your_number">Enter your number:</string>
+    <string name="generate">Generate</string>
+    <string name="lottery_results">Lottery Results</string>
+    <string name="btn5">BTN5</string>
+    <string name="enter_here">Enter here!</string>
 </resources>
