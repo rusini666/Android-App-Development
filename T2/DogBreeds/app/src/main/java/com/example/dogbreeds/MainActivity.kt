@@ -10,9 +10,6 @@ import androidx.core.content.ContextCompat
 
 
 class MainActivity : AppCompatActivity() {
-
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -21,7 +18,7 @@ class MainActivity : AppCompatActivity() {
         val dog2 = findViewById<ImageButton>(R.id.dog2)
         val dog3 = findViewById<ImageButton>(R.id.dog3)
         val breedName = findViewById<TextView>(R.id.breedName)
-        val random = (1..3).random().toString()
+        val random = (1..5).random().toString()
         val result = findViewById<TextView>(R.id.result)
         val nextBtn = findViewById<Button>(R.id.nextBtn)
         val finishBtn = findViewById<Button>(R.id.finishBtn)

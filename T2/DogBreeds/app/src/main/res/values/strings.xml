@@ -14,4 +14,5 @@
     <string name="correct_guesses">TextView</string>
     <string name="wrong_guesses">TextView</string>
     <string name="incorrect_guesses_tag">Incorrect Guesses:</string>
+    <string name="finish">Finish</string>
 </resources>
