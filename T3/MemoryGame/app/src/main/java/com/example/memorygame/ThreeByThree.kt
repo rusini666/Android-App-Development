@@ -1,6 +1,7 @@
 package com.example.memorygame
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.graphics.Color
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -10,6 +11,9 @@ import androidx.appcompat.app.AppCompatActivity
 
 
 class ThreeByThree : AppCompatActivity() {
+//    lateinit var prefs: SharedPreferences
+    var userClicks = 0
+    var tries = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +29,8 @@ class ThreeByThree : AppCompatActivity() {
         val b8 = findViewById<Button>(R.id.b8)
         val b9 = findViewById<Button>(R.id.b9)
 
+//        prefs = getSharedPreferences("com.example.memorygame",MODE_PRIVATE)
+
 
         val scoreDisplay = findViewById<TextView>(R.id.scoreDisplay1)
 
@@ -33,8 +39,6 @@ class ThreeByThree : AppCompatActivity() {
 
         val randomBtn = ArrayList<Button>()
         val randomNum = (4..6).random()
-        var userClicks = 0
-        var tries = 0
 
         val restart = Intent(this, MainActivity::class.java)
 
@@ -48,20 +52,19 @@ class ThreeByThree : AppCompatActivity() {
             }
 
             override fun onFinish() {
+
                 for (i in randomBtn)
-                    i.setBackgroundColor(Color.parseColor("#6200EE"))
+                    i.setBackgroundColor(Color.parseColor("#6200EE")) // back to default color of the buttons
                 for (j in btn) {
                     j.setOnClickListener {
+
                         if(tries != randomNum){
                             if (j in randomBtn) {
-                                userClicks++
-                                tries++
-
+                                ++userClicks
+                                ++tries
                                 object : CountDownTimer(2000, 50) {
                                     override fun onTick(arg0: Long) {
                                         j.setBackgroundColor(Color.GREEN)
-                                        val value = userClicks.toString()
-                                        scoreDisplay.text = "$value / $randomNum"
                                     }
 
                                     override fun onFinish() {
@@ -69,7 +72,7 @@ class ThreeByThree : AppCompatActivity() {
                                     }
                                 }.start()
                             } else {
-                                tries++
+                                ++tries
                                 object : CountDownTimer(2000, 50) {
                                     override fun onTick(arg0: Long) {
                                         j.setBackgroundColor(Color.RED)
@@ -82,14 +85,32 @@ class ThreeByThree : AppCompatActivity() {
                                     }
                                 }.start()
                             }
+                            val value = userClicks.toString()
+                            val userTries = tries.toString()
+                            scoreDisplay.text = "Score: $value / $userTries"
                         }else{
                             startActivity(restart)
                         }
+
                     }
                 }
+
             }
+
         }.start()
+
     }
+
+//    override fun onPause() {
+//        super.onPause()
+//
+//        val editor = prefs.edit()
+//
+//        editor.putInt("userClicks", userClicks)
+//        editor.putInt("tries", tries)
+//        editor.apply()
+//    }
+
 }
 
 

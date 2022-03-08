@@ -34,17 +34,21 @@ class FiveByFour : AppCompatActivity() {
         val b72 = findViewById<Button>(R.id.b72)
         val b73 = findViewById<Button>(R.id.b73)
 
-        val scoreDisplay5 = findViewById<TextView>(R.id.scoreDisplay5)
+        val scoreDisplay4 = findViewById<TextView>(R.id.scoreDisplay5)
 
         val btn = arrayOf(b54,b55,b56,b57,b58,b59,b60,b61,b62,b63,b64,b65,b66,b67,b68,b69,
         b70,b71,b72,b73)
         btn.shuffle()
+
         val restart = Intent(this, MainActivity::class.java)
+
         val randomBtn = ArrayList<Button>()
         val randomNum = (4..6).random()
 
         var userClicks = 0
         var tries = 0
+
+        val prefs = getSharedPreferences("com.example.memorygame",MODE_PRIVATE)
 
         for(i in 1..randomNum)
             randomBtn.add(btn[i])
@@ -56,20 +60,19 @@ class FiveByFour : AppCompatActivity() {
             }
 
             override fun onFinish() {
+
                 for (i in randomBtn)
-                    i.setBackgroundColor(Color.parseColor("#6200EE"))
+                    i.setBackgroundColor(Color.parseColor("#6200EE")) // back to default color of the buttons
                 for (j in btn) {
                     j.setOnClickListener {
+
                         if(tries != randomNum){
                             if (j in randomBtn) {
-                                userClicks++
-                                tries++
-
+                                ++userClicks
+                                ++tries
                                 object : CountDownTimer(2000, 50) {
                                     override fun onTick(arg0: Long) {
                                         j.setBackgroundColor(Color.GREEN)
-                                        val value = userClicks.toString()
-                                        scoreDisplay5.text = "$value / $randomNum"
                                     }
 
                                     override fun onFinish() {
@@ -77,7 +80,7 @@ class FiveByFour : AppCompatActivity() {
                                     }
                                 }.start()
                             } else {
-                                tries++
+                                ++tries
                                 object : CountDownTimer(2000, 50) {
                                     override fun onTick(arg0: Long) {
                                         j.setBackgroundColor(Color.RED)
@@ -90,14 +93,17 @@ class FiveByFour : AppCompatActivity() {
                                     }
                                 }.start()
                             }
+                            val value = userClicks.toString()
+                            val userTries = tries.toString()
+                            scoreDisplay4.text = "Score: $value / $userTries"
                         }else{
                             startActivity(restart)
                         }
+
                     }
                 }
+
             }
         }.start()
-
-
     }
 }

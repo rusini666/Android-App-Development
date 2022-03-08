@@ -34,15 +34,18 @@ class FourByFive : AppCompatActivity() {
         val b52 = findViewById<Button>(R.id.b52)
         val b53 = findViewById<Button>(R.id.b53)
 
-        val scoreDisplay4 = findViewById<TextView>(R.id.scoreDisplay4)
+        val scoreDisplay5 = findViewById<TextView>(R.id.scoreDisplay4)
         val restart = Intent(this, MainActivity::class.java)
         val btn = arrayOf(b34,b35,b36,b37,b38,b39,b40,b41,b42,b43,b44,b45,b46,b47,b48,b49,
             b50,b51,b52,b53)
         val randomBtn = ArrayList<Button>()
         val randomNum = (4..6).random()
         btn.shuffle()
+
         var userClicks = 0
         var tries = 0
+
+        val prefs = getSharedPreferences("com.example.memorygame",MODE_PRIVATE)
 
         for(i in 1..randomNum)
             randomBtn.add(btn[i])
@@ -62,12 +65,12 @@ class FourByFive : AppCompatActivity() {
                             if (j in randomBtn) {
                                 userClicks++
                                 tries++
-
                                 object : CountDownTimer(2000, 50) {
                                     override fun onTick(arg0: Long) {
                                         j.setBackgroundColor(Color.GREEN)
                                         val value = userClicks.toString()
-                                        scoreDisplay4.text = "$value / $randomNum"
+                                        val userTries = tries.toString()
+                                        scoreDisplay5.text = "Score: $value / $userTries"
                                     }
 
                                     override fun onFinish() {
@@ -89,15 +92,15 @@ class FourByFive : AppCompatActivity() {
                                 }.start()
                             }
                         }else{
-
+                            restart.putExtra("user clicks", userClicks.toString())
+                            restart.putExtra("tries", tries.toString())
                             startActivity(restart)
                         }
                     }
                 }
+                userClicks =  prefs.getInt("userClicks", userClicks)
+                tries = prefs.getInt("tries", tries)
             }
         }.start()
-
-
-
     }
 }

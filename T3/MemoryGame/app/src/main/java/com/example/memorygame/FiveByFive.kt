@@ -50,6 +50,9 @@ class FiveByFive : AppCompatActivity() {
 
         var userClicks = 0
         var tries = 0
+
+        val prefs = getSharedPreferences("com.example.memorygame",MODE_PRIVATE)
+
         val restart = Intent(this, MainActivity::class.java)
         for(i in 1..randomNum)
             randomBtn.add(btn[i])
@@ -61,20 +64,19 @@ class FiveByFive : AppCompatActivity() {
             }
 
             override fun onFinish() {
+
                 for (i in randomBtn)
-                    i.setBackgroundColor(Color.parseColor("#6200EE"))
+                    i.setBackgroundColor(Color.parseColor("#6200EE")) // back to default color of the buttons
                 for (j in btn) {
                     j.setOnClickListener {
+
                         if(tries != randomNum){
                             if (j in randomBtn) {
-                                userClicks++
-                                tries++
-
+                                ++userClicks
+                                ++tries
                                 object : CountDownTimer(2000, 50) {
                                     override fun onTick(arg0: Long) {
                                         j.setBackgroundColor(Color.GREEN)
-                                        val value = userClicks.toString()
-                                        scoreDisplay6.text = "$value / $randomNum"
                                     }
 
                                     override fun onFinish() {
@@ -82,7 +84,7 @@ class FiveByFive : AppCompatActivity() {
                                     }
                                 }.start()
                             } else {
-                                tries++
+                                ++tries
                                 object : CountDownTimer(2000, 50) {
                                     override fun onTick(arg0: Long) {
                                         j.setBackgroundColor(Color.RED)
@@ -95,11 +97,16 @@ class FiveByFive : AppCompatActivity() {
                                     }
                                 }.start()
                             }
+                            val value = userClicks.toString()
+                            val userTries = tries.toString()
+                            scoreDisplay6.text = "Score: $value / $userTries"
                         }else{
                             startActivity(restart)
                         }
+
                     }
                 }
+
             }
         }.start()
     }
